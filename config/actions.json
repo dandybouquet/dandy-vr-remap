@@ -1,0 +1,92 @@
+{
+  "default_bindings": [
+    {
+      "controller_type": "knuckles",
+      "binding_url": "bindings_knuckles.json"
+    },
+    {
+      "controller_type": "generic",
+      "binding_url": "bindings_knuckles.json"
+    }
+  ],
+  "actions": [
+    {
+      "name": "/actions/tf2/in/left_a",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/tf2/in/left_b",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/tf2/in/left_trigger",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/tf2/in/left_trackpad",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/tf2/in/left_grip_button",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/tf2/in/left_grip_touch",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/tf2/in/right_a",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/tf2/in/right_b",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/tf2/in/right_trigger",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/tf2/in/right_trackpad",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/tf2/in/right_grip_button",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/tf2/in/right_grip_touch",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/tf2/in/left_thumbstick",
+      "type": "vector2"
+    },
+    {
+      "name": "/actions/tf2/in/right_thumbstick",
+      "type": "vector2"
+    },
+    {
+      "name": "/actions/tf2/in/left_hand",
+      "type": "pose"
+    },
+    {
+      "name": "/actions/tf2/in/right_hand",
+      "type": "pose"
+    },
+    {
+      "name": "/actions/tf2/out/left_haptic",
+      "type": "vibration"
+    },
+    {
+      "name": "/actions/tf2/out/right_haptic",
+      "type": "vibration"
+    }
+  ],
+  "action_sets": [
+    {
+      "name": "/actions/tf2",
+      "usage": "leftright"
+    }
+  ]
+}

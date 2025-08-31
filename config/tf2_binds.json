@@ -1,0 +1,200 @@
+{
+  "inputs": {
+    "buttons": {
+      "combo": "/actions/tf2/in/left_b",
+
+      "jump": "!combo && /actions/tf2/in/right_a",
+      "duck": "!combo && /actions/tf2/in/right_b",
+      "reload": "!combo && /actions/tf2/in/left_a",
+      "taunt": "!combo && /actions/tf2/in/left_grip_button",
+      "prev_weapon": "!combo && /actions/tf2/in/left_trackpad",
+      "next_weapon": "!combo && /actions/tf2/in/right_trackpad",
+      "primary_attack": "!combo && /actions/tf2/in/right_trigger",
+      "secondary_attack": "!combo && /actions/tf2/in/left_trigger",
+
+      "leaderboard": "combo && /actions/tf2/in/right_b",
+      "medic": "combo && /actions/tf2/in/right_a",
+      "change_team": "combo && /actions/tf2/in/left_trigger",
+      "change_class": "combo && /actions/tf2/in/right_trigger",
+      "pause": "combo && /actions/tf2/in/right_trackpad",
+
+      "enable_look": "!combo && /actions/tf2/in/right_grip_touch"
+    },
+    "joysticks": {
+      "movement_x": {
+        "path": "/actions/tf2/in/left_thumbstick",
+        "axis": 0
+      },
+      "movement_y": {
+        "path": "/actions/tf2/in/left_thumbstick",
+        "axis": 1
+      },
+      "look_x": {
+        "path": "/actions/tf2/in/right_thumbstick",
+        "axis": 0
+      },
+      "look_y": {
+        "path": "/actions/tf2/in/right_thumbstick",
+        "axis": 1
+      }
+    }
+  },
+
+  "outputs": {
+    "buttons": {
+      "move_forward": {
+        "type": "KeyboardKey",
+        "key": "W"
+      },
+      "move_back": {
+        "type": "KeyboardKey",
+        "key": "S"
+      },
+      "move_left": {
+        "type": "KeyboardKey",
+        "key": "A"
+      },
+      "move_right": {
+        "type": "KeyboardKey",
+        "key": "D"
+      },
+      "jump": {
+        "type": "KeyboardKey",
+        "key": "Space"
+      },
+      "duck": {
+        "type": "KeyboardKey",
+        "key": "Ctrl"
+      },
+      "reload": {
+        "type": "KeyboardKey",
+        "key": "R"
+      },
+      "taunt": {
+        "type": "KeyboardKey",
+        "key": "G"
+      },
+      "medic": {
+        "type": "KeyboardKey",
+        "key": "E"
+      },
+      "leaderboard": {
+        "type": "KeyboardKey",
+        "key": "Tab"
+      },
+      "pause": {
+        "type": "KeyboardKey",
+        "key": "Escape"
+      },
+      "change_class": {
+        "type": "KeyboardKey",
+        "key": ","
+      },
+      "change_team": {
+        "type": "KeyboardKey",
+        "key": "."
+      },
+      "primary_attack": {
+        "type": "MouseButton",
+        "button": "left"
+      },
+      "secondary_attack": {
+        "type": "MouseButton",
+        "button": "right"
+      },
+      "next_weapon": {
+        "type": "MouseWheelButton",
+        "direction": "up"
+      },
+      "prev_weapon": {
+        "type": "MouseWheelButton",
+        "direction": "down"
+      }
+    },
+    "analog": {
+      "look_x": {
+        "type": "MouseMovement",
+        "axis": "X"
+      },
+      "look_y": {
+        "type": "MouseMovement",
+        "axis": "Y"
+      }
+    }
+  },
+  "mappings": [
+    {
+      "name": "Thumbstick Move X",
+      "type": "AxisRangeToButtons",
+      "input": "movement_x",
+      "ranges": [
+        {
+          "min": 0.15,
+          "max": 999,
+          "output": "move_right"
+        },
+        {
+          "min": -999,
+          "max": -0.15,
+          "output": "move_left"
+        }
+      ]
+    },
+    {
+      "name": "Thumbstick Move Y",
+      "type": "AxisRangeToButtons",
+      "input": "movement_y",
+      "ranges": [
+        {
+          "min": 0.15,
+          "max": 999,
+          "output": "move_forward"
+        },
+        {
+          "min": -999,
+          "max": -0.15,
+          "output": "move_back"
+        }
+      ]
+    },
+    {
+      "name": "Thumbstick Look X",
+      "type": "AxisToAxis",
+      "sensitivity": 2.0,
+      "deadzone": 0.03,
+      "scale": 100,
+      "inverted": false,
+      "input": "look_x",
+      "output": "look_x"
+    },
+    {
+      "name": "Thumbstick Look Y",
+      "type": "AxisToAxis",
+      "sensitivity": 2.0,
+      "deadzone": 0.03,
+      "scale": 100,
+      "inverted": true,
+      "input": "look_y",
+      "output": "look_y"
+    },
+    {
+      "name": "Aim",
+      "type": "SphereAimController",
+      "scale": 40,
+      "radius": 3.0,
+      "input_tracker": {
+        "device": "right",
+        "forward": [0, 0, 1]
+      },
+      "input_enable": "enable_look",
+      "output_az": {
+        "type": "MouseMovement",
+        "axis": "X"
+      },
+      "output_el": {
+        "type": "MouseMovement",
+        "axis": "Y"
+      }
+    }
+  ]
+}

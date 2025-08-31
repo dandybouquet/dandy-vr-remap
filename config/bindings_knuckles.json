@@ -1,0 +1,175 @@
+{
+  "bindings": {
+    "/actions/tf2": {
+      "poses": [
+        {
+          "output": "/actions/tf2/in/left_hand",
+          "path": "/user/hand/left/pose/raw"
+        },
+        {
+          "output": "/actions/tf2/in/right_hand",
+          "path": "/user/hand/right/pose/raw"
+        }
+      ],
+      "haptics": [
+        {
+          "output": "/actions/tf2/out/right_haptic",
+          "path": "/user/hand/right/output/haptic"
+        },
+        {
+          "output": "/actions/tf2/out/left_haptic",
+          "path": "/user/hand/left/output/haptic"
+        }
+      ],
+      "sources": [
+        {
+          "inputs": {
+            "click": {
+              "output": "/actions/tf2/in/right_trigger"
+            }
+          },
+          "mode": "button",
+          "path": "/user/hand/right/input/trigger"
+        },
+        {
+          "inputs": {
+            "click": {
+              "output": "/actions/tf2/in/left_trigger"
+            }
+          },
+          "mode": "button",
+          "path": "/user/hand/left/input/trigger"
+        },
+        {
+          "inputs": {
+            "click": {
+              "output": "/actions/tf2/in/left_a"
+            }
+          },
+          "mode": "button",
+          "path": "/user/hand/left/input/a"
+        },
+        {
+          "inputs": {
+            "click": {
+              "output": "/actions/tf2/in/right_a"
+            }
+          },
+          "mode": "button",
+          "path": "/user/hand/right/input/a"
+        },
+        {
+          "inputs": {
+            "click": {
+              "output": "/actions/tf2/in/left_b"
+            }
+          },
+          "mode": "button",
+          "path": "/user/hand/left/input/b"
+        },
+        {
+          "inputs": {
+            "click": {
+              "output": "/actions/tf2/in/right_b"
+            }
+          },
+          "mode": "button",
+          "path": "/user/hand/right/input/b"
+        },
+        {
+          "inputs": {
+            "touch": {
+              "output": "/actions/tf2/in/right_grip_touch"
+            }
+          },
+          "mode": "button",
+          "parameters": {
+            "click_activate_threshold": "0.55",
+            "click_deactivate_threshold": "0.45",
+            "force_input": "force"
+          },
+          "path": "/user/hand/right/input/grip"
+        },
+        {
+          "inputs": {
+            "touch": {
+              "output": "/actions/tf2/in/left_grip_touch"
+            }
+          },
+          "mode": "button",
+          "parameters": {
+            "click_activate_threshold": "0.55",
+            "click_deactivate_threshold": "0.45",
+            "force_input": "force"
+          },
+          "path": "/user/hand/left/input/grip"
+        },
+        {
+          "inputs": {
+            "click": {
+              "output": "/actions/tf2/in/left_grip_button"
+            }
+          },
+          "mode": "button",
+          "parameters": {
+            "click_activate_threshold": "0.8",
+            "force_input": "force"
+          },
+          "path": "/user/hand/left/input/grip"
+        },
+        {
+          "inputs": {
+            "click": {
+              "output": "/actions/tf2/in/right_grip_button"
+            }
+          },
+          "mode": "button",
+          "parameters": {
+            "click_activate_threshold": "0.8",
+            "force_input": "force"
+          },
+          "path": "/user/hand/left/input/grip"
+        },
+        {
+          "inputs": {
+            "click": {
+              "output": "/actions/tf2/in/left_trackpad"
+            }
+          },
+          "mode": "button",
+          "path": "/user/hand/left/input/trackpad"
+        },
+        {
+          "inputs": {
+            "click": {
+              "output": "/actions/tf2/in/right_trackpad"
+            }
+          },
+          "mode": "button",
+          "path": "/user/hand/right/input/trackpad"
+        },
+        {
+          "inputs": {
+            "position": {
+              "output": "/actions/tf2/in/left_thumbstick"
+            }
+          },
+          "mode": "joystick",
+          "path": "/user/hand/left/input/thumbstick"
+        },
+        {
+          "inputs": {
+            "position": {
+              "output": "/actions/tf2/in/right_thumbstick"
+            }
+          },
+          "mode": "joystick",
+          "path": "/user/hand/right/input/thumbstick"
+        }
+      ]
+    }
+  },
+  "controller_type": "knuckles",
+  "description": "Index Knuckles Bindings",
+  "name": "Knuckles Bindings"
+}
