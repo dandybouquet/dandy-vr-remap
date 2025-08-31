@@ -1,4 +1,4 @@
-#include "inputs.hpp"
+#include "inputs/inputs.hpp"
 
 namespace inputs
 {

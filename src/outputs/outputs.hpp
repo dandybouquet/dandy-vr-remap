@@ -1,6 +1,5 @@
 #pragma once
 
-#include "actions.hpp"
 #include <cmgInput/cmg_input.h>
 
 namespace outputs

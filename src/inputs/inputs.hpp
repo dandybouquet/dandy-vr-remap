@@ -1,6 +1,6 @@
 #pragma once
 
-#include "actions.hpp"
+#include "vr/actions.hpp"
 #include <string>
 
 namespace inputs

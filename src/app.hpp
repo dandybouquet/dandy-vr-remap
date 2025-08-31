@@ -11,10 +11,10 @@
 #include <cmgGraphics/cmg_graphics.h>
 #include <cmgMath/cmg_math.h>
 
-#include "actions.hpp"
-#include "vr_device.hpp"
-#include "bindings.hpp"
-#include "sphere_aim_controller.hpp"
+#include "vr/actions.hpp"
+#include "vr/device.hpp"
+#include "mappings/bindings.hpp"
+#include "mappings/sphere_aim_controller.hpp"
 
 class Tf2ActionSet : public ActionSet
 {

@@ -1,8 +1,8 @@
-#include "bind_config.hpp"
-#include "sphere_aim_controller.hpp"
-#include "inputs.hpp"
-#include "outputs.hpp"
-#include "logic_parser.hpp"
+#include "mappings/bind_config.hpp"
+#include "mappings/sphere_aim_controller.hpp"
+#include "mappings/logic_parser.hpp"
+#include "inputs/inputs.hpp"
+#include "outputs/outputs.hpp"
 
 #include "rapidjson/prettywriter.h"
 #include "rapidjson/filewritestream.h"
@@ -350,10 +350,10 @@ namespace mappings
             }
         }
 
-        CMG_LOG_DEBUG() << "Loading joystick inputs";
-        rapidjson::Value &inputListJoysticks = document["inputs"]["joysticks"];
+        CMG_LOG_DEBUG() << "Loading analog inputs";
+        rapidjson::Value &inputListAnalog = document["inputs"]["analog"];
         std::map<std::string, std::shared_ptr<inputs::Analog>> analogInputs;
-        for (auto it = inputListJoysticks.MemberBegin(); it != inputListJoysticks.MemberEnd(); it++)
+        for (auto it = inputListAnalog.MemberBegin(); it != inputListAnalog.MemberEnd(); it++)
         {
             std::string name = it->name.GetString();
             std::shared_ptr<inputs::Analog> input = loadFuncs.LoadInput<inputs::Analog>(it->value);

@@ -1,4 +1,4 @@
-#include "sphere_aim_controller.hpp"
+#include "mappings/sphere_aim_controller.hpp"
 
 namespace mappings
 {

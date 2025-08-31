@@ -1,7 +1,7 @@
-#include "logic_parser.hpp"
-#include "sphere_aim_controller.hpp"
-#include "inputs.hpp"
-#include "outputs.hpp"
+#include "mappings/logic_parser.hpp"
+#include "mappings/sphere_aim_controller.hpp"
+#include "inputs/inputs.hpp"
+#include "outputs/outputs.hpp"
 
 #include "rapidjson/prettywriter.h"
 #include "rapidjson/filewritestream.h"

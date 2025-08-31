@@ -20,7 +20,7 @@
 
       "enable_look": "!combo && /actions/tf2/in/right_grip_touch"
     },
-    "joysticks": {
+    "analog": {
       "movement_x": {
         "path": "/actions/tf2/in/left_thumbstick",
         "axis": 0
@@ -178,23 +178,15 @@
       "output": "look_y"
     },
     {
-      "name": "Aim",
+      "name": "Controller Aim",
       "type": "SphereAimController",
-      "scale": 40,
-      "radius": 3.0,
-      "input_tracker": {
-        "device": "right",
-        "forward": [0, 0, 1]
-      },
+      "sphere_radius": 3.0,
+      "output_scale": 40,
+      "tracker_device": "right",
+      "tracker_forward": [0, 0, 1],
       "input_enable": "enable_look",
-      "output_az": {
-        "type": "MouseMovement",
-        "axis": "X"
-      },
-      "output_el": {
-        "type": "MouseMovement",
-        "axis": "Y"
-      }
+      "output_az": "look_x",
+      "output_el": "look_y"
     }
   ]
 }

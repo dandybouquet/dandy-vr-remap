@@ -1,6 +1,6 @@
 #include "app.hpp"
 
-#include "bind_config.hpp"
+#include "mappings/bind_config.hpp"
 #include <cstdio>
 #include <iostream>
 #include <Windows.h>

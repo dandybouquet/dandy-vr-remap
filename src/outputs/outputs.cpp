@@ -1,4 +1,4 @@
-#include "outputs.hpp"
+#include "outputs/outputs.hpp"
 #include <Windows.h>
 
 namespace outputs

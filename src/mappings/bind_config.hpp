@@ -1,8 +1,8 @@
 #pragma once
 
-#include "actions.hpp"
-#include "outputs.hpp"
-#include "bindings.hpp"
+#include "vr/actions.hpp"
+#include "outputs/outputs.hpp"
+#include "mappings/bindings.hpp"
 #include <vector>
 
 namespace mappings

@@ -1,4 +1,4 @@
-#include "bindings.hpp"
+#include "mappings/bindings.hpp"
 
 namespace mappings
 {

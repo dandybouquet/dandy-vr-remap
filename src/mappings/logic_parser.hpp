@@ -1,9 +1,9 @@
 #pragma once
 
-#include "bindings.hpp"
-#include "sphere_aim_controller.hpp"
-#include "inputs.hpp"
-#include "outputs.hpp"
+#include "mappings/bindings.hpp"
+#include "mappings/sphere_aim_controller.hpp"
+#include "inputs/inputs.hpp"
+#include "outputs/outputs.hpp"
 
 #include <set>
 

@@ -1,10 +1,10 @@
 #pragma once
 
-#include "actions.hpp"
-#include "bindings.hpp"
-#include "outputs.hpp"
-#include "inputs.hpp"
-#include "vr_device.hpp"
+#include "vr/actions.hpp"
+#include "mappings/bindings.hpp"
+#include "outputs/outputs.hpp"
+#include "inputs/inputs.hpp"
+#include "vr/device.hpp"
 #include <cmgMath/cmg_math.h>
 
 namespace mappings

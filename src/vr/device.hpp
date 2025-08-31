@@ -8,6 +8,7 @@
 #include <openvr.h>
 #include <cmgMath/cmg_math.h>
 
+/// @brief State of a VR device/tracker
 class VrDevice
 {
 public:

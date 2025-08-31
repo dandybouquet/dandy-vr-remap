@@ -1,8 +1,8 @@
 #pragma once
 
-#include "actions.hpp"
-#include "outputs.hpp"
-#include "inputs.hpp"
+#include "vr/actions.hpp"
+#include "outputs/outputs.hpp"
+#include "inputs/inputs.hpp"
 #include <vector>
 
 namespace mappings
@@ -100,8 +100,8 @@ namespace mappings
         /// @param bind the bind mapping to add
         void AddBind(std::shared_ptr<BindBase> bind);
 
-		inline InputMap &GetInputs() { return m_inputs; }
-		inline OutputMap &GetOutputs() { return m_outputs; }
+        inline InputMap &GetInputs() { return m_inputs; }
+        inline OutputMap &GetOutputs() { return m_outputs; }
 
         /// @brief Updates all bind mappings
         void Update();

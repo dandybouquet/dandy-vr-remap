@@ -56,23 +56,24 @@ add_executable(${TARGET_NAME}
 	src/main.cpp
 	src/app.hpp
 	src/app.cpp
-	src/actions.hpp
-	src/actions.cpp
-	src/vr_device.hpp
-	src/vr_device.cpp
-	src/outputs.hpp
-	src/outputs.cpp
-	src/inputs.hpp
-	src/inputs.cpp
-	src/bindings.hpp
-	src/bindings.cpp
-	src/sphere_aim_controller.hpp
-	src/sphere_aim_controller.cpp
-	src/logic_parser.hpp
-	src/logic_parser.cpp
-	src/bind_config.hpp
-	src/bind_config.cpp
+	src/vr/actions.hpp
+	src/vr/actions.cpp
+	src/vr/device.hpp
+	src/vr/device.cpp
+	src/outputs/outputs.hpp
+	src/outputs/outputs.cpp
+	src/inputs/inputs.hpp
+	src/inputs/inputs.cpp
+	src/mappings/bindings.hpp
+	src/mappings/bindings.cpp
+	src/mappings/sphere_aim_controller.hpp
+	src/mappings/sphere_aim_controller.cpp
+	src/mappings/logic_parser.hpp
+	src/mappings/logic_parser.cpp
+	src/mappings/bind_config.hpp
+	src/mappings/bind_config.cpp
 )
+target_include_directories(${TARGET_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src)
 target_include_directories(${TARGET_NAME} PRIVATE ${OPENVR_INCLUDE_DIR})
 target_link_libraries(${TARGET_NAME} PRIVATE ${OPENVR_LIBRARIES})
 # link_directories(${OPENVR_ROOT_DIR}/bin)
