@@ -18,6 +18,7 @@ public:
 	explicit Action(const std::string &identifier);
 
 	virtual void Update() {}
+
 	virtual std::ostream &DebugString(std::ostream &stream) const
 	{
 		stream << identifier << ":";

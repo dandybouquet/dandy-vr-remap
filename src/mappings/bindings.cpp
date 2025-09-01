@@ -25,35 +25,38 @@ namespace mappings
 
     void BindMapper::Update()
     {
+        // Pre-Update outputs
+        for (auto &it : m_outputs)
+        {
+            if (it.second)
+                it.second->PreUpdate();
+        }
+
+        // Update inputs
         for (auto &it : m_inputs)
         {
             if (it.second)
                 it.second->Update();
         }
 
+        // Update bind mappings
         for (auto &bind : m_binds)
         {
             if (bind)
                 bind->Update();
         }
+
+        // Update outputs
+        for (auto &it : m_outputs)
+        {
+            if (it.second)
+                it.second->Update();
+        }
     }
 
     void ButtonToButton::Update()
     {
-        if (inverted)
-        {
-            if (input->IsPressed())
-                output->Release();
-            if (input->IsReleased())
-                output->Press();
-        }
-        else
-        {
-            if (input->IsPressed())
-                output->Press();
-            if (input->IsReleased())
-                output->Release();
-        }
+        output->SetState(input->IsDown() != inverted);
     }
 
     void AxisRangeToButton::AddRange(float minValue, float maxValue,
@@ -76,10 +79,7 @@ namespace mappings
             range.active = value >= range.minValue && value < range.maxValue;
             if (range.inverted)
                 range.active = !range.active;
-            if (range.active && !activePrev)
-                range.output->Press();
-            if (!range.active && activePrev)
-                range.output->Release();
+            range.output->SetState(range.active);
         }
     }
 

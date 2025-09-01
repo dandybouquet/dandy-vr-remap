@@ -6,6 +6,7 @@ namespace inputs
     void Button::Update()
     {
         m_downPrev = m_down;
+        m_down = false;
     }
 
     bool Button::IsDown() const
@@ -27,6 +28,11 @@ namespace inputs
     {
         stream << m_name << ": " << (IsDown() ? "DOWN" : "UP");
         return stream;
+    }
+
+    void Analog::Update()
+    {
+        m_value = 0.0f;
     }
 
     ButtonFromAction::ButtonFromAction(std::shared_ptr<ButtonAction> action)
@@ -89,6 +95,7 @@ namespace inputs
 
     void JoystickAxis::Update()
     {
+        Analog::Update();
         m_value = m_action->position[m_axis];
     }
 }

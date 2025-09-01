@@ -118,12 +118,12 @@ namespace mappings
             }
 
             template <>
-            std::shared_ptr<outputs::Axis> LoadOutput(rapidjson::Value &data)
+            std::shared_ptr<outputs::Analog> LoadOutput(rapidjson::Value &data)
             {
                 if (data.IsString())
                 {
                     std::string value = data.GetString();
-                    auto output = m_mapper.GetOutputOfType<outputs::Axis>(value);
+                    auto output = m_mapper.GetOutputOfType<outputs::Analog>(value);
                     if (output)
                         return output;
                     return nullptr;
@@ -238,7 +238,7 @@ namespace mappings
                 if (input == nullptr)
                     return nullptr;
 
-                auto output = LoadOutput<outputs::Axis>(data["output"]);
+                auto output = LoadOutput<outputs::Analog>(data["output"]);
                 if (output == nullptr)
                     return nullptr;
 
@@ -387,7 +387,7 @@ namespace mappings
         for (auto it = outputListAnalog.MemberBegin(); it != outputListAnalog.MemberEnd(); it++)
         {
             std::string name = it->name.GetString();
-            auto output = loadFuncs.LoadOutput<outputs::Axis>(it->value);
+            auto output = loadFuncs.LoadOutput<outputs::Analog>(it->value);
             if (output)
             {
                 CMG_LOG_DEBUG() << "  " << name;

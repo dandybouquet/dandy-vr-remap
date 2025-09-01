@@ -8,7 +8,7 @@
 namespace mappings
 {
 
-    /// @brief Based class for all input-to-output mappings
+    /// @brief Base class for all input-to-output mappings
     class BindBase
     {
     public:
@@ -23,7 +23,7 @@ namespace mappings
         std::string m_name;
     };
 
-    /// @brief Maps a button to button
+    /// @brief Maps a button input to a button output
     class ButtonToButton : public BindBase
     {
     public:
@@ -39,7 +39,7 @@ namespace mappings
         bool inverted = false;
     };
 
-    /// @brief Maps on or more ranges of an axis to button presses
+    /// @brief Maps one or more ranges of an analog value to button presses
     class AxisRangeToButton : public BindBase
     {
     public:
@@ -65,19 +65,19 @@ namespace mappings
         std::shared_ptr<inputs::Analog> input;
     };
 
-    /// @brief Maps an input axis value to an output axis value with optional
+    /// @brief Maps an input analog value to an output analog value with optional
     /// scaling and deadzone
     class AxisToAxis : public BindBase
     {
     public:
         AxisToAxis(
             std::shared_ptr<inputs::Analog> input,
-            std::shared_ptr<outputs::Axis> output) : input(input), output(output) {}
+            std::shared_ptr<outputs::Analog> output) : input(input), output(output) {}
 
         virtual void Update() override;
 
         std::shared_ptr<inputs::Analog> input;
-        std::shared_ptr<outputs::Axis> output;
+        std::shared_ptr<outputs::Analog> output;
         float scale = 1.0f;
         float sensitivity = 1.0f;
         float deadzone = 0.0f;
@@ -93,18 +93,8 @@ namespace mappings
 
         BindMapper();
 
-        void AddInput(std::shared_ptr<inputs::InputBase> input);
-        void AddOutput(std::shared_ptr<outputs::OutputBase> output);
-
-        /// @brief Add a new bind mapping
-        /// @param bind the bind mapping to add
-        void AddBind(std::shared_ptr<BindBase> bind);
-
         inline InputMap &GetInputs() { return m_inputs; }
         inline OutputMap &GetOutputs() { return m_outputs; }
-
-        /// @brief Updates all bind mappings
-        void Update();
 
         template <class T>
         std::shared_ptr<T> GetInputOfType(const std::string &name)
@@ -123,6 +113,21 @@ namespace mappings
                 return nullptr;
             return std::dynamic_pointer_cast<T>(it->second);
         }
+
+        /// @brief Add a new input
+        /// @param input the input to add
+        void AddInput(std::shared_ptr<inputs::InputBase> input);
+
+        /// @brief Add a new output
+        /// @param output the output to add
+        void AddOutput(std::shared_ptr<outputs::OutputBase> output);
+
+        /// @brief Add a new bind mapping
+        /// @param bind the bind mapping to add
+        void AddBind(std::shared_ptr<BindBase> bind);
+
+        /// @brief Updates all bind mappings
+        void Update();
 
     private:
         InputMap m_inputs;

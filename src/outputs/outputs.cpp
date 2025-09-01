@@ -3,9 +3,28 @@
 
 namespace outputs
 {
-    void KeyboardKey::Press()
+
+	void Button::PreUpdate()
+	{
+		m_downPrev = m_down;
+		m_down = false;
+	}
+
+    void Button::Update()
     {
-        Button::Press();
+        if (IsPressed())
+            OnPressed();
+        if (IsReleased())
+            OnReleased();
+    }
+
+    void Analog::PreUpdate()
+    {
+        m_value = 0.0f;
+    }
+
+    void KeyboardKey::OnPressed()
+    {
         INPUT ip;
         ip.type = INPUT_KEYBOARD;
         ip.ki.wScan = 0;
@@ -17,9 +36,8 @@ namespace outputs
         SendInput(1, &ip, sizeof(INPUT));
     }
 
-    void KeyboardKey::Release()
+    void KeyboardKey::OnReleased()
     {
-        Button::Release();
         INPUT ip;
         ip.type = INPUT_KEYBOARD;
         ip.ki.wScan = 0;
@@ -31,9 +49,8 @@ namespace outputs
         SendInput(1, &ip, sizeof(INPUT));
     }
 
-    void MouseButton::Press()
+    void MouseButton::OnPressed()
     {
-        Button::Press();
         INPUT input;
         input.type = INPUT_MOUSE;
         input.mi.dwFlags = MOUSEEVENTF_LEFTDOWN;
@@ -44,9 +61,8 @@ namespace outputs
         SendInput(1, &input, sizeof(INPUT));
     }
 
-    void MouseButton::Release()
+    void MouseButton::OnReleased()
     {
-        Button::Release();
         INPUT input;
         input.type = INPUT_MOUSE;
         input.mi.dwFlags = MOUSEEVENTF_LEFTUP;
@@ -57,7 +73,7 @@ namespace outputs
         SendInput(1, &input, sizeof(INPUT));
     }
 
-    void MouseWheelButton::Press()
+    void MouseWheelButton::OnPressed()
     {
         INPUT input;
         input.type = INPUT_MOUSE;
@@ -70,10 +86,9 @@ namespace outputs
         SendInput(1, &input, sizeof(INPUT));
     }
 
-    void MouseMovement::SetValue(float value)
+    void MouseMovement::Update()
     {
-        LONG intValue = static_cast<LONG>(value);
-        m_value = intValue;
+        LONG intValue = static_cast<LONG>(m_value);
         if (intValue == 0)
             return;
         INPUT input;
@@ -85,6 +100,8 @@ namespace outputs
         input.mi.time = 0;
         input.mi.dwExtraInfo = 0;
         SendInput(1, &input, sizeof(INPUT));
-    }
+
+		Analog::Update();
+	}
 
 }

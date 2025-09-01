@@ -5,7 +5,7 @@
 
 namespace inputs
 {
-
+    /// @brief Base class for all inputs
     class InputBase
     {
     public:
@@ -29,14 +29,21 @@ namespace inputs
         std::string m_name;
     };
 
+    /// @brief Base class for analog inputs which return a single float value
     class Analog : public InputBase
     {
     public:
-        inline virtual float GetValue() const = 0;
+        inline virtual float GetValue() const { return m_value; }
+
+        virtual void Update() override;
 
         virtual std::ostream &DebugString(std::ostream &stream) const override;
+
+    protected:
+        float m_value = 0.0f;
     };
 
+    /// @brief Analog input which gets the position of a joystick axis
     class JoystickAxis : public Analog
     {
     public:
@@ -44,18 +51,17 @@ namespace inputs
 
         virtual void Update() override;
 
-        inline virtual float GetValue() const { return m_value; }
-
     protected:
         std::shared_ptr<JoystickAction> m_action;
-        float m_value = 0.0f;
         size_t m_axis = 0;
     };
 
+    /// @brief Base class for button inputs which have a boolean on/off state
     class Button : public InputBase
     {
     public:
         virtual void Update() override;
+
         virtual bool IsDown() const;
         virtual bool IsPressed() const;
         virtual bool IsReleased() const;
@@ -67,6 +73,7 @@ namespace inputs
         bool m_downPrev = false;
     };
 
+    /// @brief Button input which gets the state of a VR Button Action
     class ButtonFromAction : public Button
     {
     public:
@@ -83,6 +90,8 @@ namespace inputs
         std::shared_ptr<ButtonAction> m_action;
     };
 
+    /// @brief Binary logic operation between two buttons. Supports 'AND', and
+    /// 'OR'.
     class ButtonBooleanOp : public Button
     {
     public:
@@ -93,7 +102,8 @@ namespace inputs
             kXor,
         };
 
-        ButtonBooleanOp(Operator op, std::shared_ptr<Button> left, std::shared_ptr<Button> right);
+        ButtonBooleanOp(Operator op, std::shared_ptr<Button> left,
+                        std::shared_ptr<Button> right);
 
         virtual void Update() override;
 
@@ -116,6 +126,7 @@ namespace inputs
         std::shared_ptr<Button> m_right;
     };
 
+    /// @brief Unary logic operation for a button. Only 'NOT' is supported.
     class ButtonUnaryOp : public Button
     {
     public:

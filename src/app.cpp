@@ -130,8 +130,8 @@ void App::OnInitialize()
 	m_aimController = std::make_shared<mappings::SphereAimController>(
 		m_rightController,
 		m_bindMapper.GetInputOfType<inputs::Button>("enable_look"),
-		std::make_shared<outputs::MouseMovement>(0),
-		std::make_shared<outputs::MouseMovement>(1));
+		m_bindMapper.GetOutputOfType<outputs::MouseMovement>("look_x"),
+		m_bindMapper.GetOutputOfType<outputs::MouseMovement>("look_y"));
 	m_aimController->SetName("Aim");
 	m_bindMapper.AddBind(m_aimController);
 
@@ -170,15 +170,6 @@ void App::OnUpdate(float dt)
 
 	// Update VR actions
 	m_actions->Update();
-
-	// Compound button
-	if (m_actions->calibrate->down && m_actions->reload->down &&
-		(m_actions->calibrate->pressed || m_actions->reload->pressed))
-	{
-		auto escapeKey = outputs::KeyboardKey(1);
-		escapeKey.Press();
-		escapeKey.Release();
-	}
 
 	// Get poses for all trackers
 	std::array<vr::TrackedDevicePose_t, vr::k_unMaxTrackedDeviceCount> devicePoses;
@@ -333,43 +324,36 @@ void App::OnRender()
 	}
 
 	// Action list
+	// {
+	// 	std::stringstream ss;
+	// 	ss << "VR Actions:\n";
+
+	// 	size_t index = 0;
+	// 	for (auto it : m_actions->GetActions())
+	// 	{
+	// 		it.second->DebugString(ss) << "\n";
+	// 		index++;
+	// 	}
+	// 	g.DrawString(m_font.get(), ss.str(), Vector2f(16, 260), Color::YELLOW);
+	// }
+
 	{
 		std::stringstream ss;
-		ss << "VR Actions:\n";
-
-		size_t index = 0;
-		for (auto it : m_actions->GetActions())
-		{
-			ss << "  ";
-			it.second->DebugString(ss) << "\n";
-			index++;
-		}
-		g.DrawString(m_font.get(), ss.str(), Vector2f(16, 260), Color::YELLOW);
+		ss << "Control Mapping: " << (m_controlMappingEnabled ? "ENABLED" : "DISABLED") << "\n";
+		g.DrawString(m_font.get(), ss.str(), Vector2f(16, 240), Color::YELLOW);
 	}
 
 	// Input list
 	{
 		std::stringstream ss;
-
-		ss << "Control Mapping: " << (m_controlMappingEnabled ? "ENABLED" : "DISABLED") << "\n";
 		ss << "Inputs:\n";
-
 		size_t index = 0;
 		for (auto it : m_bindMapper.GetInputs())
 		{
-			ss << "  ";
 			it.second->DebugString(ss) << "\n";
 			index++;
 		}
-		ss << "Center: x=" << m_aimController->m_center.x
-		   << ", y=" << m_aimController->m_center.y
-		   << ", z=" << m_aimController->m_center.z << "\n";
-		ss << "Offset:  az=" << Math::ToDegrees(m_aimController->m_azimuthOffset)
-		   << ", el=" << Math::ToDegrees(m_aimController->m_elevationOffset) << "\n";
-		ss << "Current: az=" << Math::ToDegrees(m_aimController->m_azimuth)
-		   << ", el=" << Math::ToDegrees(m_aimController->m_elevation) << "\n";
-
-		g.DrawString(m_font.get(), ss.str(), Vector2f(16, 200), Color::YELLOW);
+		g.DrawString(m_font.get(), ss.str(), Vector2f(16, 260), Color::YELLOW);
 	}
 
 	// Output list
@@ -379,11 +363,10 @@ void App::OnRender()
 		size_t index = 0;
 		for (auto it : m_bindMapper.GetOutputs())
 		{
-			ss << "  ";
 			it.second->DebugString(ss) << "\n";
 			index++;
 		}
-		g.DrawString(m_font.get(), ss.str(), Vector2f(300, 400), Color::YELLOW);
+		g.DrawString(m_font.get(), ss.str(), Vector2f(300, 260), Color::YELLOW);
 	}
 
 	g.SetTransformation(

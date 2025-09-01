@@ -6,7 +6,7 @@
 int main()
 {
 	App app;
-	app.Initialize("Dandy VR Remap", 900, 600);
+	app.Initialize("Dandy VR Remap", 900, 800);
 	app.Run();
 	return 0;
 }

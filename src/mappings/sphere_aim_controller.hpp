@@ -16,8 +16,8 @@ namespace mappings
         SphereAimController(
             std::shared_ptr<VrDevice> device,
             std::shared_ptr<inputs::Button> enableButton,
-            std::shared_ptr<outputs::Axis> outputX,
-            std::shared_ptr<outputs::Axis> outputY)
+            std::shared_ptr<outputs::Analog> outputX,
+            std::shared_ptr<outputs::Analog> outputY)
             : m_inputDevice(device),
               m_enableButton(enableButton),
               m_outputX(outputX),
@@ -32,6 +32,12 @@ namespace mappings
         virtual void Update() override;
 
         float m_radius = 3.0f;
+        float m_centerBias = 1.5f;
+        std::shared_ptr<VrDevice> m_inputDevice;
+        std::shared_ptr<inputs::Button> m_enableButton;
+        std::shared_ptr<outputs::Analog> m_outputX;
+        std::shared_ptr<outputs::Analog> m_outputY;
+
         bool m_enabled = false;
         float m_azimuthOffset = 0.0f;
         float m_elevationOffset = 0.0f;
@@ -40,12 +46,6 @@ namespace mappings
         Vector3f m_direction = Vector3f::ZERO;
         Vector3f m_directionOffset = Vector3f::ZERO;
         Vector3f m_rayHitPoint = Vector3f::ZERO;
-
-        std::shared_ptr<VrDevice> m_inputDevice;
-        std::shared_ptr<inputs::Button> m_enableButton;
-        std::shared_ptr<outputs::Axis> m_outputX;
-        std::shared_ptr<outputs::Axis> m_outputY;
-
         Vector2i m_mouseOffset = Vector2i::ZERO;
         Vector3f m_center = Vector3f::ZERO;
     };

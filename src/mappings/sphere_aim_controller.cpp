@@ -41,7 +41,7 @@ namespace mappings
         if (!m_enabled)
         {
             m_mouseOffset = Vector2i::ZERO;
-            m_center = m_inputDevice->position;
+            m_center = m_inputDevice->position + (ray.direction * m_centerBias);
             m_azimuthOffset = azimuth;
             m_elevationOffset = elevation;
             m_directionOffset = direction;
